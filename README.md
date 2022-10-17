@@ -1,21 +1,28 @@
 # NasaFuelCalculator
 
-**TODO: Add description**
+## Description
 
-## Installation
+An application that will calculate the fuel required for a space flight. It expects an input of the weight of the
+equipment and the mission path. The mission path should be an array of tuples. Each step of the mission path should be
+in the form `{:launch | :land, float}`.The calculation is done according to the following two formulas:
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `nasa_fuel_calculator` to your list of dependencies in `mix.exs`:
+- For launch - `mass * gravity * 0.042 - 33` rounded down
+- For landing - `mass * gravity * 0.033 - 42` rounded down
 
-```elixir
-def deps do
-  [
-    {:nasa_fuel_calculator, "~> 0.1.0"}
-  ]
-end
-```
+When calculating the fuel consumption the fuel will require additional fuel so this should be taken into account.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/nasa_fuel_calculator>.
+## Running the application
 
+There are two ways to run the application you can call directly the `NasaFuelCalculator.weight_of_fuel/2` function or
+use the precompiled escript by issuing `./nasa_fuel_calculator` from the command line.
+
+## Updating the escript
+
+In order to update the escript with the latest changes in the code you'll need to run `mix escript.build` from the
+command line.
+
+## Documentation
+
+The application has documentation generated with `ex_doc` which you can browse locally. The documentation is not stored
+under version control so you'll have to generate it locally first with `mix docs`. After that you can open
+`doc/index.html` in your browser.
